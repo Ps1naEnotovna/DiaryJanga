@@ -31,6 +31,18 @@ class Subject(models.Model):
         verbose_name_plural = 'Предметы'
 
 
+class Homework(models.Model):
+    homework = models.TextField('Домашнее задание')
+
+    def __str__(self):
+        return self.homework
+
+    class Meta:
+        db_table = 'homework'
+        verbose_name = 'домашнее задание'
+        verbose_name_plural = 'Домашнее задания'
+
+
 class Diary(models.Model):
     pupil = models.ForeignKey(Pupil, verbose_name='Ученик',
                               on_delete=models.CASCADE, null=True)
@@ -46,6 +58,8 @@ class Diary(models.Model):
                                                         (1, 1)))
     is_present = models.BooleanField('Присутствие', default=False)
     notes = models.TextField('Заметки', null=True, blank=True)
+    homework = models.ForeignKey(Homework, verbose_name='Домашнее задание',
+                                 on_delete=models.CASCADE, null=True)
 
     class Meta:
         db_table = 'diaries'

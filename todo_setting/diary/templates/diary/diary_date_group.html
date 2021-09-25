@@ -26,6 +26,7 @@
             <th scope="col">Оценка</th>
             <th scope="col">Присутствие</th>
             <th scope="col">Заметки</th>
+            <th score="col">Домашнее задание</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +43,7 @@
               {% endif %}
             </td>
             <td>{{ diary.notes }}</td>
+            <td>{{ diary.homework }}</td>
           </tr>
         {% endfor %}
         </tbody>

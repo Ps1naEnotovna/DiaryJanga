@@ -23,13 +23,9 @@ def max_ones(_list: list) -> int:
             sec_count = 0
     if prima_count > solution:
         solution = prima_count
-    if solution == len_list or solution == 0:
+    if solution == len_list:
         solution = len_list - 1
     return solution
-
-
-print(max_ones([1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]))
-print(max_ones([1] * 10))
 
 
 class MaxOnesTest(unittest.TestCase):
@@ -37,7 +33,19 @@ class MaxOnesTest(unittest.TestCase):
     def test_only_ones(self):
         self.assertEqual(9, max_ones([1] * 10))
 
+    def test_only_zeros(self):
+        self.assertEqual(0, max_ones([0] * 10))
+
+    def test_pogranichnikov(self):
+        self.assertEqual(1, max_ones([1, 0]))
+        self.assertEqual(1, max_ones([0, 1]))
+
     def test_single_zero(self):
         self.assertEqual(6, max_ones([1, 1, 1, 1, 0, 1, 1]))
         self.assertEqual(6, max_ones([1, 1, 1, 1, 0, 1, 1, 0, 1]))
         self.assertEqual(9, max_ones([1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]))
+
+    def test_many_zero(self):
+        self.assertEqual(6, max_ones([1, 0, 0, 0, 1, 1, 1, 1, 1, 1]))
+        self.assertEqual(5, max_ones([1, 1, 1, 1, 1, 0, 0, 1, 1]))
+        self.assertEqual(7, max_ones([1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]))

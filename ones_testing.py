@@ -1,6 +1,12 @@
 import unittest
 
 
+def validate(_list: list) -> None:
+    not_right = [a for a in _list if a not in (0, 1)]
+    if not_right:
+        raise ValueError
+
+
 def max_ones(_list: list) -> int:
     """Solution"""
     len_list = len(_list)
@@ -29,7 +35,7 @@ def max_ones(_list: list) -> int:
 
 
 class MaxOnesTest(unittest.TestCase):
-
+    """Tests for max_ones function"""
     def test_only_ones(self):
         self.assertEqual(9, max_ones([1] * 10))
 
@@ -43,9 +49,15 @@ class MaxOnesTest(unittest.TestCase):
     def test_single_zero(self):
         self.assertEqual(6, max_ones([1, 1, 1, 1, 0, 1, 1]))
         self.assertEqual(6, max_ones([1, 1, 1, 1, 0, 1, 1, 0, 1]))
-        self.assertEqual(9, max_ones([1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1]))
+        self.assertEqual(9, max_ones([1, 1, 1, 1, 0, 1, 1, 1,
+                                      0, 1, 1, 1, 1, 1, 1]))
 
     def test_many_zero(self):
         self.assertEqual(6, max_ones([1, 0, 0, 0, 1, 1, 1, 1, 1, 1]))
         self.assertEqual(5, max_ones([1, 1, 1, 1, 1, 0, 0, 1, 1]))
-        self.assertEqual(7, max_ones([1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]))
+        self.assertEqual(7, max_ones([1, 1, 1, 1, 1, 1, 0, 0, 0, 1,
+                                      1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]))
+
+    def test_validate(self):
+        with self.assertRaises(ValueError):
+            validate([1, 0, 0, 1, 2, 1, 0])

@@ -54,6 +54,3 @@ class FindElemTest(unittest.TestCase):
         self.assertFalse(find_elem(example, 24))
         self.assertFalse(find_elem(example, 5))
         self.assertFalse(find_elem(example, 7))
-
-    def test_true(self):
-        self.assertTrue((3, 1), find_elem(example, 21))

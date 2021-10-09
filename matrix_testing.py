@@ -3,7 +3,7 @@
 
 Дано число, задача - определить его коорднинаты в матрице или выдать False в случае отсутствия"""
 
-
+import unittest
 from typing import Union
 
 example = [[1, 2, 3],
@@ -39,3 +39,21 @@ def find_elem(matrix: list[list[int, ...]],
         else:
             matrix_low = row + 1
     return False
+
+
+# print(find_elem(example, 9))
+
+
+class FindElemTest(unittest.TestCase):
+    def test_one(self):
+        self.assertEqual((1, -1), find_elem(example, 9))
+        self.assertEqual((3, 1), find_elem(example, 21))
+        self.assertEqual((1, 0), find_elem(example, 4))
+
+    def test_false(self):
+        self.assertFalse(find_elem(example, 24))
+        self.assertFalse(find_elem(example, 5))
+        self.assertFalse(find_elem(example, 7))
+
+    def test_true(self):
+        self.assertTrue((3, 1), find_elem(example, 21))

@@ -44,22 +44,23 @@ class Homework(models.Model):
 
 
 class Diary(models.Model):
-    pupil = models.ForeignKey(Pupil, verbose_name='Ученик',
-                              on_delete=models.CASCADE, null=True)
-    subject = models.ForeignKey(Subject, verbose_name='Предмет',
-                                on_delete=models.CASCADE, null=True)
+    pupil = models.ForeignKey(
+        Pupil, verbose_name='Ученик', on_delete=models.CASCADE, null=True
+    )
+    subject = models.ForeignKey(
+        Subject, verbose_name='Предмет', on_delete=models.CASCADE, null=True
+    )
     created_at = models.DateTimeField('Создано', auto_now_add=True)
     updated_at = models.DateTimeField('Обновлено', auto_now=True)
     date = models.DateField('Дата', default=now)
-    score = models.IntegerField('Оценка', choices=((5, 5),
-                                                        (4, 4),
-                                                        (3, 3),
-                                                        (2, 2),
-                                                        (1, 1)))
+    score = models.IntegerField(
+        'Оценка', choices=((5, 5), (4, 4), (3, 3), (2, 2), (1, 1))
+    )
     is_present = models.BooleanField('Присутствие', default=False)
     notes = models.TextField('Заметки', null=True, blank=True)
-    homework = models.ForeignKey(Homework, verbose_name='Домашнее задание',
-                                 on_delete=models.CASCADE, null=True)
+    homework = models.ForeignKey(
+        Homework, verbose_name='Домашнее задание', on_delete=models.CASCADE, null=True
+    )
 
     class Meta:
         db_table = 'diaries'

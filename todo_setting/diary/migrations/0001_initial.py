@@ -9,17 +9,27 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='Pupil',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=32, verbose_name='Имя')),
                 ('last_name', models.CharField(max_length=32, verbose_name='Фамилия')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Добавление')),
+                (
+                    'updated_at',
+                    models.DateTimeField(auto_now=True, verbose_name='Добавление'),
+                ),
             ],
             options={
                 'verbose_name': 'ученик',
@@ -30,7 +40,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Subject',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
                 ('name', models.CharField(max_length=32, verbose_name='Название')),
             ],
             options={
@@ -42,15 +60,62 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Diary',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Создано')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Обновлено')),
-                ('date', models.DateField(default=django.utils.timezone.now, verbose_name='Дата')),
-                ('score', models.IntegerField(choices=[(5, 5), (4, 4), (3, 3), (2, 2), (1, 1)], verbose_name='Оценка')),
-                ('is_present', models.BooleanField(default=False, verbose_name='Присутствие')),
-                ('notes', models.TextField(blank=True, null=True, verbose_name='Заметки')),
-                ('pupil', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='diary.pupil', verbose_name='Ученик')),
-                ('subject', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='diary.subject', verbose_name='Предмет')),
+                (
+                    'id',
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'created_at',
+                    models.DateTimeField(auto_now_add=True, verbose_name='Создано'),
+                ),
+                (
+                    'updated_at',
+                    models.DateTimeField(auto_now=True, verbose_name='Обновлено'),
+                ),
+                (
+                    'date',
+                    models.DateField(
+                        default=django.utils.timezone.now, verbose_name='Дата'
+                    ),
+                ),
+                (
+                    'score',
+                    models.IntegerField(
+                        choices=[(5, 5), (4, 4), (3, 3), (2, 2), (1, 1)],
+                        verbose_name='Оценка',
+                    ),
+                ),
+                (
+                    'is_present',
+                    models.BooleanField(default=False, verbose_name='Присутствие'),
+                ),
+                (
+                    'notes',
+                    models.TextField(blank=True, null=True, verbose_name='Заметки'),
+                ),
+                (
+                    'pupil',
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to='diary.pupil',
+                        verbose_name='Ученик',
+                    ),
+                ),
+                (
+                    'subject',
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to='diary.subject',
+                        verbose_name='Предмет',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'запись в дневнике',

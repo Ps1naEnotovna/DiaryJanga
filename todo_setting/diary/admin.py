@@ -4,7 +4,17 @@ from .models import Diary, Subject, Pupil, Homework
 
 @admin.register(Diary)
 class DiaryAdmin(admin.ModelAdmin):
-    list_display = ('pupil', 'subject', 'created_at', 'score', 'is_present', 'notes', 'homework', 'updated_at', 'date')
+    list_display = (
+        'pupil',
+        'subject',
+        'created_at',
+        'score',
+        'is_present',
+        'notes',
+        'homework',
+        'updated_at',
+        'date',
+    )
 
 
 @admin.register(Subject)
@@ -19,4 +29,4 @@ class PupilAdmin(admin.ModelAdmin):
 
 @admin.register(Homework)
 class PupilAdmin(admin.ModelAdmin):
-    list_display = ('homework', )
+    list_display = ('homework',)

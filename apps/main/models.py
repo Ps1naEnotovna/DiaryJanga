@@ -1,6 +1,6 @@
 from django.db import models
 
-from ..apps_utils.base_model import CUDateModel
+from ..accordant_utils.base_model import CUDateModel
 
 
 class Announcement(models.Model, CUDateModel):

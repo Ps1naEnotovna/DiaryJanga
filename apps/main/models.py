@@ -17,6 +17,22 @@ class Announcement(CUDateModel):
         verbose_name_plural = 'Объявления'
 
 
+class Training(models.Model):
+    letter = models.IntegerField('Буква', choices=('А', 'Б', 'В', 'Г'))
+    number = models.IntegerField('Цифра', choices=(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11))
+
+    def full_name_training(self):
+        return f'{self.number}{self.letter}'
+
+    def __str__(self):
+        return self.full_name_training()
+
+    class Meta:
+        db_table = 'training'
+        verbose_name = 'поток'
+        verbose_name_plural = 'Потоки'
+
+
 class Student(CUDateModel):
     name = models.CharField('Имя', max_length=32)
     last_name = models.CharField('Фамилия', max_length=32)
@@ -62,7 +78,17 @@ class Homework(CUDateModel):
 
 
 class Schedule(models.Model):
-    student = models.ForeignKey(Student, verbose_name='Ученик')
+    student = models.ForeignKey(Student, verbose_name='Ученик',
+                                on_delete=models.CASCADE, null=True)
     subject = models.ForeignKey(Subject, verbose_name='Предмет',
                                 on_delete=models.CASCADE, null=True)
     date = models.DateField('Дата', default=now)
+    score = models.IntegerField('Оценка', choices=((5, 5),
+                                                   (4, 4),
+                                                   (3, 3),
+                                                   (2, 2),
+                                                   (1, 1)))
+    is_present = models.BooleanField('Присутствие', default=False)
+    notes = models.TextField('Заметки', null=True, blank=True)
+    homework = models.ForeignKey(Homework, verbose_name='Домашнее задание',
+                                 on_delete=models.CASCADE, null=True)

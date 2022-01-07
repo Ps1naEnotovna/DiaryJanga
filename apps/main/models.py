@@ -46,7 +46,7 @@ class Student(CUDateModel):
         return self.full_name()
 
     class Meta:
-        db_table = 'student'
+        db_table = 'students'
         verbose_name = 'ученик'
         verbose_name_plural = 'Ученики'
 
@@ -92,3 +92,22 @@ class Schedule(models.Model):
     notes = models.TextField('Заметки', null=True, blank=True)
     homework = models.ForeignKey(Homework, verbose_name='Домашнее задание',
                                  on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        db_table = 'schedules'
+        verbose_name = 'расписание'
+        verbose_name_plural = 'Расписание'
+
+
+class Report(models.Model):
+    date = models.DateField('Дата', default=now)
+    student = models.ForeignKey(Student, verbose_name='Ученик',
+                                on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        db_table = 'reports'
+        verbose_name = 'отчёт'
+        verbose_name_plural = 'Отчёты'
+
+
+

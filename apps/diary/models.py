@@ -5,9 +5,9 @@ from apps.accordant_utils.base_model import CUDateModel
 
 class TrainingStream(models.Model):
     letter = models.CharField('Буква', choices=(('А', 'A'),
-                                                   ('Б', 'Б'),
-                                                   ('В', 'В'),
-                                                   ('Г', 'Г')), max_length=1)
+                                                ('Б', 'Б'),
+                                                ('В', 'В'),
+                                                ('Г', 'Г')), max_length=1)
     number = models.IntegerField('Цифра', choices=[(a, a) for a in range(1, 12)])
 
     def full_name_training(self):
@@ -17,7 +17,7 @@ class TrainingStream(models.Model):
         return self.full_name_training()
 
     class Meta:
-        db_table = 'training streams'
+        db_table = 'training_streams'
         verbose_name = 'поток'
         verbose_name_plural = 'Потоки'
 
@@ -66,22 +66,20 @@ class Homework(CUDateModel):
         verbose_name_plural = 'Домашнее задания'
 
 
-class Schedule(models.Model):
-    student = models.ForeignKey(Student, verbose_name='Ученик',
-                                on_delete=models.CASCADE, null=True)
+class EducationalSession(models.Model):
+    training_stream = models.ForeignKey(TrainingStream, verbose_name='Поток',
+                                        on_delete=models.CASCADE, null=True)
     subject = models.ForeignKey(Subject, verbose_name='Предмет',
                                 on_delete=models.CASCADE, null=True)
     date = models.DateField('Дата', default=now)
-    score = models.IntegerField('Оценка', choices=[(a, a) for a in range(5, 0, -1)])
-    is_present = models.BooleanField('Присутствие', default=False)
     notes = models.TextField('Заметки', null=True, blank=True)
     homework = models.ForeignKey(Homework, verbose_name='Домашнее задание',
                                  on_delete=models.CASCADE, null=True)
 
     class Meta:
-        db_table = 'schedules'
-        verbose_name = 'расписание'
-        verbose_name_plural = 'Расписание'
+        db_table = 'educational_sessions'
+        verbose_name = 'учебная сессия'
+        verbose_name_plural = 'Учебные сессии'
 
 
 class EducationalMaterial(CUDateModel):
@@ -89,4 +87,24 @@ class EducationalMaterial(CUDateModel):
                                 on_delete=models.CASCADE, null=True)
     text = models.TextField('Текст', null=True, blank=True)
     training_stream_number = models.IntegerField('Цифра потока', choices=[(a, a) for a in range(1, 12)])
-    available_after = models.BigIntegerField('Доступно после прохождения материала номер', null=True, blank=True)
+    available_after = models.ForeignKey('self', verbose_name='Доступно после прохождения материала номер',
+                                        on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        db_table = 'educational_materials'
+        verbose_name = 'учебный материал'
+        verbose_name_plural = 'Учебные материалы'
+
+
+class Score(CUDateModel):
+    student = models.ForeignKey(Student, verbose_name='Ученик',
+                                on_delete=models.CASCADE, null=True)
+    schedule = models.ForeignKey(EducationalSession, verbose_name='',
+                                 on_delete=models.CASCADE, null=True)
+    score = models.IntegerField('Оценка', choices=[(a, a) for a in range(5, 0, -1)])
+    is_present = models.BooleanField('Присутствие', default=False)
+
+    class Meta:
+        db_table = 'scores'
+        verbose_name = 'оценка'
+        verbose_name_plural = 'Оценки'

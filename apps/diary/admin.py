@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Subject, Schedule, TrainingStream, Homework, EducationalMaterial
+from .models import Student, Subject, EducationalSession, TrainingStream, Homework, EducationalMaterial
 
 
 @admin.register(Student)
@@ -12,7 +12,7 @@ class SubjectAdmin(admin.ModelAdmin):
     ...
 
 
-@admin.register(Schedule)
+@admin.register(EducationalSession)
 class ScheduleAdmin(admin.ModelAdmin):
     ...
 

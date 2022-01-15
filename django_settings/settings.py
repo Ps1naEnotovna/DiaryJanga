@@ -91,6 +91,8 @@ TIME_ZONE = 'Europe/Moscow'
 USE_I18N = True
 USE_TZ = True
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'templates',
+]
 STATIC_URL = 'static/'
-STATIC_ROOT = 'public'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

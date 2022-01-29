@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
@@ -7,10 +8,10 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>portfolio</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="portfolio.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="{% static 'nicepage.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'portfolio.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'jquery.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'nicepage.js' %}" defer=""></script>
     <meta name="generator" content="Nicepage 4.3.3, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     
@@ -20,7 +21,7 @@
 		"@context": "http://schema.org",
 		"@type": "Organization",
 		"name": "",
-		"logo": "images/256422486-0.jpeg",
+		"logo": "{% static 'images/256422486-0.jpeg' %}",
 		"sameAs": []
 }</script>
     <meta name="theme-color" content="#478ac9">
@@ -29,7 +30,7 @@
   </head>
   <body class="u-body"><header class="u-clearfix u-custom-color-3 u-header u-header" id="sec-f387"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
         <a href="https://nicepage.com" class="u-image u-logo u-image-1" data-image-width="150" data-image-height="100">
-          <img src="images/256422486-0.jpeg" class="u-logo-image u-logo-image-1">
+          <img src="{% static 'images/256422486-0.jpeg' %}" class="u-logo-image u-logo-image-1">
         </a>
         <a href="https://nicepage.com/c/technology-html-templates" class="u-border-2 u-border-white u-btn u-button-style u-custom-color-3 u-btn-1">Войти</a>
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
@@ -41,18 +42,18 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="diary.html" style="padding: 10px 20px;">Дневник</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="portfolio.html" style="padding: 10px 20px;">Портфолио</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="report.html" style="padding: 10px 20px;">Отчёты</a>
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'diary' %}" style="padding: 10px 20px;">Дневник</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'portfolio' %}" style="padding: 10px 20px;">Портфолио</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="{% url 'report' %}" style="padding: 10px 20px;">Отчёты</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
-                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="diary.html" style="padding: 10px 20px;">Дневник</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="portfolio.html" style="padding: 10px 20px;">Портфолио</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="report.html" style="padding: 10px 20px;">Отчёты</a>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'diary' %}" style="padding: 10px 20px;">Дневник</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'portfolio' %}" style="padding: 10px 20px;">Портфолио</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="{% url 'report' %}" style="padding: 10px 20px;">Отчёты</a>
 </li></ul>
               </div>
             </div>
